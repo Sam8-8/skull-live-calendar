@@ -1,37 +1,37 @@
-          git pushnombreActualizar fondo de pantalla
+name: Update wallpaper
 
-en:
-  flujo de trabajo_despacho:
-  cronograma:
-    # 03:00 UTC = 00:00 en América/Punta_Arenas mientras que UTC-3
+on:
+  workflow_dispatch:
+  schedule:
+    # 03:00 UTC = 00:00 in America/Punta_Arenas while UTC-3
     - cron: '0 3 * * *'
 
-permisos:
-  contenidos: escribir
+permissions:
+  contents: write
 
-empleo:
-  actualizar:
-    run-on: ubuntu-último
-    pasos:
-      - nombre: Checkout
-        usos: acciones/checkout@v5
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - nombre: Configurar Python
-        usos: acciones/setup-python@v6
-        con:
-          versión python: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-      - nombre: Instalar almohada
-        run: python -m pip instalar almohada
+      - name: Install Pillow
+        run: python -m pip install Pillow
 
-      - nombre: Generar fondo de pantalla
+      - name: Generate wallpaper
         run: python generate_skull_calendar.py
 
-      - nombre: Publicar fondo de pantalla actualizado
+      - name: Publish updated wallpaper
         run: |
-          cp skull_live_calendar.png fondo de pantalla.png
-          git config nombre de usuario 'github-actions[bot]'
+          cp skull_live_calendar.png wallpaper.png
+          git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git agrega fondo de pantalla.png
-          git diff --cached --quiet || git commit -m "Actualizar fondo de pantalla"
+          git add wallpaper.png
+          git diff --cached --quiet || git commit -m "Update wallpaper"
           git push
