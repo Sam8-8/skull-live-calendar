@@ -3,7 +3,7 @@ name: Update wallpaper
 on:
   workflow_dispatch:
   schedule:
-    # 03:00 UTC = 00:00 in America/Punta_Arenas while UTC-3
+    # 03:00 UTC = 00:00 en America/Punta_Arenas while UTC-3
     - cron: '0 3 * * *'
 
 permissions:
@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
