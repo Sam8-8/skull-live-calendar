@@ -1,4 +1,4 @@
-          git push          git pushnombreActualizar fondo de pantalla
+          git pushnombreActualizar fondo de pantalla
 
 en:
   flujo de trabajo_despacho:
@@ -9,7 +9,7 @@ en:
 permisos:
   contenidos: escribir
 
-empleos:
+empleo:
   actualizar:
     run-on: ubuntu-último
     pasos:
